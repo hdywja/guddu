@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love 💖 - Special Edition</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            max-width: 800px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            font-size: 4em;
+            color: #e91e63;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite, rainbow 3s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @keyframes rainbow {
+            0% { color: #e91e63; }
+            16% { color: #9c27b0; }
+            33% { color: #673ab7; }
+            50% { color: #3f51b5; }
+            66% { color: #2196f3; }
+            83% { color: #00bcd4; }
+            100% { color: #e91e63; }
+        }
+        .message {
+            font-size: 1.8em;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #555;
+            animation: fadeIn 2s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .heart {
+            font-size: 3em;
+            color: #e91e63;
+            animation: float 3s ease-in-out infinite, rotate 4s linear infinite;
+            display: block;
+            margin-bottom: 20px;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .hearts-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .heart-bg {
+            position: absolute;
+            color: rgba(233, 30, 99, 0.6);
+            font-size: 2em;
+            animation: float-up 8s linear infinite;
+        }
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        .btn {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.5em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+        }
+        .btn:hover {
+            background: #ad1457;
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.6);
+        }
+        .surprise {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            font-size: 2em;
+            color: #e91e63;
+            z-index: 20;
+            display: none;
+            animation: bounceIn 0.5s ease;
+            max-width: 500px;
+            text-align: center;
+        }
+        @keyframes bounceIn {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 15;
+        }
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #e91e63;
+            animation: confetti-fall 3s linear infinite;
+        }
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-bg" id="heartsBg"></div>
+    <div class="confetti" id="confetti"></div>
+    <div class="container">
+        <h1>Hey meri guddu! 💕</h1>
+        <div class="heart">💖</div>
+        <p class="message" id="mainMessage">
+            Tu meri zindagi ka sabse khoobsurat hissa hai. Har din tere saath bitana ek sapna sa lagta hai. Teri muskurahat se mera din ban jaata hai, aur teri baatein dil ko chu jaati hain. I love you more than words can say! Ab hamesha saath rahenge, promise. 😘
+        </p>
+        <button class="btn" onclick="nextSurprise()">Next Surprise! 🎁</button>
+    </div>
+    <div class="surprise" id="surpriseModal">
+        <p id="surpriseText"></p>
+        <button onclick="closeSurprise()" style="margin-top: 20px; padding: 10px 20px; font-size: 1em;">Continue 💕</button>
+    </div>
+
+    <script>
+        let surpriseIndex = 0;
+        const surprises = [
+            "Surprise 1: i love you meri guddu meri bachi! ❤️",
+            "Surprise 2: Tera favorite song sunte hue, bas tu hi yaad aati hai. Dance karte hain? 🎶",
+            "Surprise 3: Har subah uth ke tera message check karna mera routine hai. Miss you! 🌅",
+            "Surprise 4: Tu meri best friend bhi hai, lover bhi. Lucky me! 😍",
+            "Surprise 5: Promise: Hamesha tere saath, no matter what. Forever yours! 💍"
+        ];
+
+        // Floating hearts background - more frequent
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-bg');
+            heart.innerHTML = ['💖', '💕', '💗', '💓'][Math.floor(Math.random() * 4)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 5 + 4) + 's';
+            document.getElementById('heartsBg').appendChild(heart);
+            setTimeout(() => heart.remove(), 8000);
+        }
+        setInterval(createHeart, 200);
+
+        // Next surprise function
+        function nextSurprise() {
+            createConfetti();
+            if (surpriseIndex < surprises.length) {
+                document.getElementById('surpriseText').textContent = surprises[surpriseIndex];
+                document.getElementById('surpriseModal').style.display = 'block';
+                surpriseIndex++;
+            } else {
+                surpriseIndex = 0;
+                // Optional: Change main message after full cycle
+                document.getElementById('mainMessage').textContent = "Ab full surprises dekh li? Aur bhi hain, but real life mein milte hain! 😘";
+            }
+        }
+
+        function closeSurprise() {
+            document.getElementById('surpriseModal').style.display = 'none';
+        }
+
+        // Simple confetti
+        function createConfetti() {
+            const confetti = document.getElementById('confetti');
+            for (let i = 0; i < 50; i++) {
+                const piece = document.createElement('div');
+                piece.classList.add('confetti-piece');
+                piece.style.left = Math.random() * 100 + 'vw';
+                piece.style.background = ['#e91e63', '#9c27b0', '#3f51b5', '#00bcd4'][Math.floor(Math.random() * 4)];
+                piece.style.animationDelay = Math.random() * 3 + 's';
+                piece.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.appendChild(piece);
+                setTimeout(() => piece.remove(), 5000);
+            }
+        }
+
+        // Initial confetti on load
+        window.onload = () => createConfetti();
+    </script>
+</body>
+</html>
